@@ -50,7 +50,7 @@ void loadProperty(def parent,params)
 
 ////////////////////////////////////////////////////////////////////////////////
  void loadJobMaps(line, testType, testMap,def parent) {
-    userDataYML = readYaml text:  'property/test.yml'
+    userDataYML = readYaml file:  'property/test.yml'
     println "userDataYML : ${userDataYML}"
     //def jobData = parent.userDataYML.(indent.toString()).(testType.toString().trim())
     //jobData = (jobData == null ? "" : jobData)
