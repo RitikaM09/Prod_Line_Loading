@@ -42,18 +42,20 @@ void loadProperty(def parent,params)
       def TestEnv=env.substring(env.indexOf("-")+1,env.length())
       println "TestEnv : ${TestEnv}"
       def testType="ServiceTests"
-      loadJobMaps(line,testType,ajexMap,parent)
+      loadJobMaps(line,testType,TestEnv,ajexMap,parent)
 }
 
 
 
 
 ////////////////////////////////////////////////////////////////////////////////
- void loadJobMaps(line, testType, testMap,def parent) {
+ void loadJobMaps(line, testType,TestEnv, testMap,def parent) {
     userDataYML = readYaml file:  'property/test.yml'
     println "userDataYML : ${userDataYML}"
     def jobData = userDataYML.(line.toString()).(testType.toString())
+    def TestEnvdata = userDataYML.(line.toString()).(TestEnv.toString())
    println "jobData : ${jobData}"
+   println "TestEnvdata :${TestEnvdata}"
     //jobData = (jobData == null ? "" : jobData)
    //populateMap(jobData, testMap)
 }
