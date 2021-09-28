@@ -1,3 +1,5 @@
+import groovy.transform.Field
+
 @Field def Map<String,String> parameterMap = new LinkedHashMap<String, String>()
 import java.util.List
 import org.apache.commons.lang3.text.StrSubstitutor
