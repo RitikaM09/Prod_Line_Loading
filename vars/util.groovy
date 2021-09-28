@@ -30,7 +30,7 @@ void loadProperty(def parent,params)
   
   
   }
-  
+  println "parameterMap : ${parameterMap}"
       println "############"
   
   
