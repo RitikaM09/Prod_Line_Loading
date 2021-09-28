@@ -1,0 +1,69 @@
+#common_properties
+Common:
+  NotificationType:
+    Slack:
+      SlackChannel: af-client-testing
+  Test: all
+  EdgeToEnd:
+    ModifyData: skip
+    E2E_Smoke_Tests:
+      JobParameter:
+        ArtifactVersion: [version]
+        Line: [environment]
+# all properties required to run jobs on d1 line.
+D1:
+ Test: all
+ EnableAjex: true
+ ServiceTests:
+  central-auth/central-auth-test:
+   JobParameter:
+    Line: d1
+    BRANCH: gisc-kt
+    Stages: health
+# all properties required to run jobs on q1 line.
+Q1:
+ HealthCheck: skip
+ ServiceSmoke:
+   Test_smoke_job:
+     JobParameter:
+       BRANCH: Build
+       hiddenParamaters: TestPractice
+ RunRegressionInParallel: true
+ ServiceRegression:
+   Test_regression_job:
+     JobParameter:
+       INPUTPARAMETER: Test:OneTest2:Two
+   Test_perf_job:
+     JobParameter: none
+ PS4: 
+   Test_ps4_job:
+     JobParameter: none
+ PS5:
+   Test_ps5_job:
+     JobParameter: none
+ EdgeToEnd: skip
+ NotificationType:
+  Email:
+   EmailGroup: Sujith.Poojary@sony.com
+   EmailOn: success
+ # all properties required to run jobs on q2 line.
+Q2:
+ HealthCheck: skip
+ ServiceSmoke: skip
+ ServiceRegression: skip
+ ServicePerformance: skip
+ EdgeToEnd:
+# all properties required to run jobs on e1 line.
+E1:
+ HealthCheck: skip
+ ClientTestJobs: skip
+ ServiceRegression: skip
+ ServicePerformance: skip
+ EdgeToEnd:
+# all properties required to run jobs on p1 line. 
+P1:
+ HealthCheck: skip
+ ClientTestJobs: skip
+ ServiceRegression: skip
+ ServicePerformance: skip
+ EdgeToEnd:
