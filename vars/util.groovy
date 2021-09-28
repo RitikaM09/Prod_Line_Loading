@@ -6,7 +6,7 @@ import org.apache.commons.lang3.text.StrSubstitutor
 
 
 
-  //////////////////////////////////////
+////////////////////////////////////////
 def parseInputParams(def parent,params)
 {
   loadProperty(parent,params)
@@ -29,27 +29,24 @@ void loadProperty(def parent,params)
         } else if (paramArray.length == 1) {
             parameterMap.put(key.toString().trim(), "")
         }
-  
-  
   }
   println "parameterMap : ${parameterMap}"
       println "############"
       
-  
       String env = parameterMap.get("environment")
       line = env.substring(0, env.indexOf("-"))
       println "LINE : ${line}"
       def TestEnv=env.substring(env.indexOf("-")+1,env.length())
       println "TestEnv : ${TestEnv}"
       def testType="ServiceTests"
-      loadJobMaps(line,testType,TestEnv,ajexMap,parent)
+      loadAjexJobMaps(line,testType,TestEnv,ajexMap,parent)
 }
 
 
 
 
 ////////////////////////////////////////////////////////////////////////////////
- void loadJobMaps(line, testType,TestEnv, testMap,def parent) {
+ void loadAjexJobMaps(line, testType,TestEnv, testMap,def parent) {
     userDataYML = readYaml file:  'property/test.yml'
     println "userDataYML : ${userDataYML}"
     def jobData = userDataYML.(line.toString()).(testType.toString())
@@ -57,5 +54,39 @@ void loadProperty(def parent,params)
    println "jobData : ${jobData}"
    println "TestEnvdata :${TestEnvdata}"
     //jobData = (jobData == null ? "" : jobData)
-   //populateMap(jobData, testMap)
+   populateAjexMap(jobData,TestEnvdata, testMap)
+}
+
+
+
+//////////////////////////////////////////////////////////////////////
+public void populateAjexMap(jobData,TestEnvdata,jobMap) {
+    def ymlOldSchema=false
+    def Map<String, String> paramMap = new HashMap<String, String>();
+    if (jobData != null && !(jobData.toString().trim().equalsIgnoreCase(pipeLineConstants.IGNORE)) && !(jobData.toString().trim().equalsIgnoreCase(pipeLineConstants.SKIP))) 
+  {
+        TestEnvdata.each
+    {
+     paramMap.put(it.key, it.value)
+    }
+        jobData.each {
+            
+            def jobName = it.key
+            def value = it.value
+            if (!ymlOldSchema) {
+                value = value.JobParameter
+            }
+            if (value != "none") {
+                value.each {
+                    paramMap.put(it.key, it.value)
+                }
+            }
+	jobMap.put(jobName, paramMap)
+        }
+    }
+    
+    
+    echo "Completed job data population in map"
+  println "paramMap : ${paramMap}"
+  println "AjexMap : ${jobMap}"
 }
