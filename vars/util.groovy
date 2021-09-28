@@ -20,6 +20,8 @@ void loadProperty(def parent,params)
             String value = paramArray[1]
             println value
             parent.parameterMap.put(key.toString().trim(), value.toString().trim())
+                println parameterMap
+
         } else if (paramArray.length == 1) {
             parent.parameterMap.put(key.toString().trim(), "")
         }
@@ -28,7 +30,6 @@ void loadProperty(def parent,params)
   }
   
       println "############"
-      println parameterMap
   
   
 }
