@@ -6,7 +6,7 @@ Common:
 
 
 #D1-LINE-PROPERTIES
-D1:
+d1:
  Test: all
  EnableAjex: true
  ServiceTests:
