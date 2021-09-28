@@ -1,6 +1,3 @@
-#String[] params =  InputParameters.split(";")
-
-
 def initStage(def caller)
 {
   def inputParameters="""component_name:wallets;
