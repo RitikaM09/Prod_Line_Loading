@@ -12,6 +12,7 @@ git__branch:gisc-kt;"""
   
   String [] params= inputParameters.split(";")
   
+  println params
   
   util.parseInputParams(caller,params)
 
