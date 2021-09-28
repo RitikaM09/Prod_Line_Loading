@@ -25,7 +25,7 @@ void loadProperty(def parent,params)
             parent.parameterMap.put(key.toString().trim(), value.toString().trim())
 
         } else if (paramArray.length == 1) {
-            parent.parameterMap.put(key.toString().trim(), "")
+            parameterMap.put(key.toString().trim(), "")
         }
   
   
