@@ -41,8 +41,8 @@ void loadProperty(def parent,params)
       println "LINE : ${line}"
       def TestEnv=env.substring(env.indexOf("-")+1,env.length())
       println "TestEnv : ${TestEnv}"
-      
-      loadJobMaps(line,"ServiceTests",ajexMap,parent)
+      def testType="ServiceTests"
+      loadJobMaps(line,testType,ajexMap,parent)
 }
 
 
