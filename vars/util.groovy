@@ -1,3 +1,6 @@
+@Field def Map<String,String> parameterMap = new LinkedHashMap<String, String>()
+
+
 def parseInputParams(def parent,params)
 {
   loadProperty(parent,params)
