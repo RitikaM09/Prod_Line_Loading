@@ -2,9 +2,11 @@ import groovy.transform.Field
 import java.util.List
 import org.apache.commons.lang3.text.StrSubstitutor
 @Field def Map<String,String> parameterMap = new LinkedHashMap<String, String>()
+@Field def Map<String,String> ajexMap = new LinkedHashMap<String, String>()
 
 
 
+  //////////////////////////////////////
 def parseInputParams(def parent,params)
 {
   loadProperty(parent,params)
@@ -12,7 +14,7 @@ def parseInputParams(def parent,params)
 }
 
 
-
+////////////////////////////////////
 void loadProperty(def parent,params)
 {
   for (param in params) {
@@ -39,10 +41,18 @@ void loadProperty(def parent,params)
       println "LINE : ${line}"
       def TestEnv=env.substring(env.indexOf("-")+1,env.length())
       println "TestEnv : ${TestEnv}"
-    
-
-  
-  
-  
+      
+      loadJobMaps(line,"ServiceTests",ajexMap,parent)
 }
 
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+ void loadJobMaps(line, testType, testMap,def parent) {
+    userDataYML = readYaml text:  'property/test.yml'
+    println "userDataYML : ${userDataYML}"
+    //def jobData = parent.userDataYML.(indent.toString()).(testType.toString().trim())
+    //jobData = (jobData == null ? "" : jobData)
+   //populateMap(jobData, testMap)
+}
