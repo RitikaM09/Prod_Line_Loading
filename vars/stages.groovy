@@ -4,7 +4,7 @@ def initStage(def caller)
   
   String [] params= inputParameters.split(";")
   
-  println params
+  println "Params : ${params}"
   
   util.parseInputParams(caller,params)
 
