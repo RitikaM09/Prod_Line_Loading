@@ -25,12 +25,12 @@ void loadProperty(def parent,params)
         } else if (paramArray.length == 1) {
             parent.parameterMap.put(key.toString().trim(), "")
         }
-      println "############"
-      println parameterMap
+  
   
   }
   
-  
+      println "############"
+      println parameterMap
   
   
 }
