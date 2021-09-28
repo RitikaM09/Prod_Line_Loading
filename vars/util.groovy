@@ -52,7 +52,7 @@ void loadProperty(def parent,params)
  void loadJobMaps(line, testType, testMap,def parent) {
     userDataYML = readYaml file:  'property/test.yml'
     println "userDataYML : ${userDataYML}"
-    def jobData = userDataYML.(line.toString())
+    def jobData = userDataYML.(line.toString()).(testType.toString())
    println "jobData : ${jobData}"
     //jobData = (jobData == null ? "" : jobData)
    //populateMap(jobData, testMap)
