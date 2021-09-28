@@ -32,6 +32,16 @@ void loadProperty(def parent,params)
   }
   println "parameterMap : ${parameterMap}"
       println "############"
+      
+  
+      String env = parameterMap.get("environment")
+      line = env.substring(0, env.indexOf("-"))
+      println "LINE : ${line}"
+      def TestEnv=env.substring(env.indexOf("-")+1,env.length())
+      println "TestEnv : ${TestEnv}"
+    
+
+  
   
   
 }
