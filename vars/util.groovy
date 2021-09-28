@@ -63,7 +63,7 @@ void loadProperty(def parent,params)
 public void populateAjexMap(jobData,TestEnvdata,jobMap) {
     def ymlOldSchema=false
     def Map<String, String> paramMap = new HashMap<String, String>();
-    if (jobData != null && !(jobData.toString().trim().equalsIgnoreCase(IGNORE)) && !(jobData.toString().trim().equalsIgnoreCase(SKIP))) 
+    if (jobData != null) 
   {
         TestEnvdata.each
     {
