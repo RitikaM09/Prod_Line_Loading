@@ -31,11 +31,11 @@ void loadProperty(def parent,params)
         }
   }
   println "parameterMap : ${parameterMap}"
-      println "############"
       
       String env = parameterMap.get("environment")
       line = env.substring(0, env.indexOf("-"))
       println "LINE : ${line}"
+     //added this line to load the Test-Env//
       def TestEnv=env.substring(env.indexOf("-")+1,env.length())
       println "TestEnv : ${TestEnv}"
       def testType="ServiceTests"
@@ -46,6 +46,7 @@ void loadProperty(def parent,params)
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// Create a new method to load Ajex JobMap with new @TESTENV parameter
  void loadAjexJobMaps(line, testType,TestEnv, testMap,def parent) {
     userDataYML = readYaml file:  'property/test.yml'
     println "userDataYML : ${userDataYML}"
@@ -60,12 +61,14 @@ void loadProperty(def parent,params)
 
 
 //////////////////////////////////////////////////////////////////////
+// Create a New method to Populate AJex Map with  @TESTENVDATA Parameter
 public void populateAjexMap(jobData,TestEnvdata,jobMap) {
     def ymlOldSchema=false
     def Map<String, String> paramMap = new HashMap<String, String>();
     if (jobData != null) 
   {
-        TestEnvdata.each
+    //Put TestEnvdata into ParamMap
+    TestEnvdata.each
     {
      paramMap.put(it.key, it.value)
     }
